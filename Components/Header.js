@@ -5,14 +5,9 @@ import { Header, Icon } from 'react-native-elements'
 class MyHeader extends React.Component {
     render() {
         return (
-            <Header backgroundColor="white"
-                leftComponent={<View style={{ textAlign: "center" }}>
-                    <Text numberOfLines={1} style={{ fontSize: 24, overflow: "visible" }}>
-                        {this.props.title}
-                    </Text></View>
-                }
-                rightComponent={<Icon name="menu" type="simple-line-icon" />}
-            />
+            <Header backgroundColor="white" rightComponent={<Icon name="menu" type="simple-line-icon" />}>
+            <Text style={{fontSize:28,width:400}}>{this.props.title}</Text>    
+            </Header>
         );
     };
 }
