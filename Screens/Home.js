@@ -9,7 +9,7 @@ class Home extends React.Component {
         return (
             <View>
                 <MyHeader title="Instagram" />
-                    <View style={{height:"100%"}}>
+                    <View style={{height:"90%"}}>
                         <FlatList data={[1,2,4,5,6]}
                         renderItem={({Item})=><Post />}>
                     </FlatList>
