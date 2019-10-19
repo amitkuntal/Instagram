@@ -1,12 +1,15 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
 import Home from './Screens/Home';
 import Liked from './Screens/Liked';
 import Profile from './Screens/Profile';
 import Search from './Screens/Search';
 import AddPost from './Screens/AddPost';
+import Comments from './Screens/Comments';
+
 
 const TabNavigator = {
   Home: Home,
@@ -39,7 +42,6 @@ const NavOptions = {
         iconType = 'font-awesome';
       }
 
-      // You can return any component that you like here!
       return <Icon name={iconName} type={iconType} size={25} />;
     },
     tabBarOptions: {
@@ -48,7 +50,24 @@ const NavOptions = {
   }),
 };
 
+const TabNav =createBottomTabNavigator(TabNavigator, NavOptions)
+const stack =createStackNavigator({
+  comment: {
+    screen: Comments,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  
+});
+const App = createSwitchNavigator({
+  App: {
+    screen: TabNav,
+  },
+  Comments: {
+    screen: stack,
+  },
+});
 
-export default createAppContainer(
-  createBottomTabNavigator(TabNavigator, NavOptions)
-);
+export default createAppContainer(App);
+

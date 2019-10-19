@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 
 export default class commentAndLike extends React.Component {
     render() {
+        const {navigate} = this.props.navigation;
       return (
         <View style={{flex: .16,
             flexDirection: 'row'}}>
@@ -32,6 +33,7 @@ export default class commentAndLike extends React.Component {
                         color="black"
                         />
                     }
+                    onPress={() => this.props.navigation.navigate('comment')}
                    
                     />
                 </View>

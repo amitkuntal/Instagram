@@ -12,7 +12,7 @@ export default class post extends React.Component {
         <View style={{width:"100%",marginBottom:"5%"}}>
             <PostHeader />
             <PostImage />
-            <CommentAndLike />
+            <CommentAndLike navigation={this.props.navigation} />
             <CounterCaption/>
         </View>
       );

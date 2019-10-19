@@ -11,7 +11,7 @@ class Home extends React.Component {
                 <MyHeader title="Instagram" />
                     <View style={{height:"90%"}}>
                         <FlatList data={[1,2,4,5,6]}
-                        renderItem={({Item})=><Post />}>
+                        renderItem={({Item})=><Post navigation={this.props.navigation}/>}>
                     </FlatList>
                 </View>
             </View>
