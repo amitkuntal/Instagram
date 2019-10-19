@@ -1,13 +1,11 @@
 import React from 'react';
 import {Text, View,FlatList,KeyboardAvoidingView } from 'react-native';
 import {Header,Icon,Avatar,Button,Input} from 'react-native-elements';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class OtherScreen extends React.Component {
     render() {
         return (
-          <KeyboardAvoidingView
-          behavior="padding">
+          
             <View>
             <Header backgroundColor="white">
             <Button
@@ -59,8 +57,7 @@ class OtherScreen extends React.Component {
           
                 
             </View>    
-          </KeyboardAvoidingView>
-          
+        
         );
     }
 }

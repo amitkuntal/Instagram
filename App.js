@@ -3,13 +3,16 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
+
+
 import Home from './Screens/Home';
 import Liked from './Screens/Liked';
 import Profile from './Screens/Profile';
 import Search from './Screens/Search';
 import AddPost from './Screens/AddPost';
 import Comments from './Screens/Comments';
-
+import Login from './Screens/Login';
+import SignUp from './Screens/SignUp';
 
 const TabNavigator = {
   Home: Home,
@@ -61,6 +64,12 @@ const stack =createStackNavigator({
   
 });
 const App = createSwitchNavigator({
+  Login:{
+    screen:Login
+  },
+  SignUp:{
+    screen:SignUp
+  },
   App: {
     screen: TabNav,
   },
