@@ -1,9 +1,13 @@
 import React from 'react';
-import {Text, View,FlatList,KeyboardAvoidingView } from 'react-native';
+import {Text, View,FlatList,BackHandler } from 'react-native';
 import {Header,Icon,Avatar,Button,Input} from 'react-native-elements';
 
 class OtherScreen extends React.Component {
-    render() {
+     render() {
+        const { state } = this.props.navigation;    
+        const params = state.params || {};
+        BackHandler.addEventListener('hardwareBackPress',()=>this.props.navigation.navigate(params.go_back_key));
+   
         return (
           
             <View>
@@ -18,9 +22,9 @@ class OtherScreen extends React.Component {
                 />
               }
               type="clear"
-            onPress ={()=>this.props.navigation.navigate('Home')}
+            onPress ={()=>this.props.navigation.navigate(params.go_back_key)}
             />   
-            <Text>Comments</Text>
+            <Text>Comments </Text>
             </Header>
             <View style={{width:"100%",height:"82%"}}>
                     <FlatList data={[1,2,4,5,6,7,8,9,10,11,12,13]}
