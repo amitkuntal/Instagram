@@ -1,20 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Avatar, Card } from 'react-native-elements';
-import MyHeader from '../Components/Header';
+import ViewNav from '../Components/ViewNav';
+import { createAppContainer } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
+import Grid from '../Components/Grid';
+import List from '../Components/List';
 
-
-class Profile extends React.Component {
-    render() {
-        return (
-            <View>
-                <MyHeader title="user_name" />
-                <Text style={{
-                    textAlign: "center",
-                }}>ProfilePage</Text>
-            </View >
-        );
-    }
+const TabNavigator = {
+    Grid: Grid,
+    List: List,
 }
 
+const NavBar = createMaterialTopTabNavigator(
+    TabNavigator,
+    {
+        tabBarComponent: props => <ViewNav {...props} />,
+    },
+    {
+        initialRouteName: 'Grid',
+        backBehaviour: 'initialRoute',
+    }
+);
+
+const Profile = createAppContainer(NavBar);
 export default Profile;

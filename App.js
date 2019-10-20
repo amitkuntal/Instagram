@@ -2,7 +2,7 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import {createStackNavigator} from 'react-navigation-stack';
+import { createStackNavigator } from 'react-navigation-stack';
 
 
 import Home from './Screens/Home';
@@ -13,13 +13,14 @@ import AddPost from './Screens/AddPost';
 import Comments from './Screens/Comments';
 import Login from './Screens/Login';
 import SignUp from './Screens/SignUp';
+import FollowData from './Screens/FollowData';
 
 const TabNavigator = {
+  Profile: Profile,
   Home: Home,
   Search: Search,
-  AddPost: AddPost,
+  AddPost: FollowData,
   Liked: Liked,
-  Profile: Profile,
 };
 
 const NavOptions = {
@@ -53,28 +54,47 @@ const NavOptions = {
   }),
 };
 
-const TabNav =createBottomTabNavigator(TabNavigator, NavOptions)
-const stack =createStackNavigator({
+const TabNav = createBottomTabNavigator(TabNavigator, NavOptions)
+const stack = createStackNavigator({
+
   comment: {
     screen: Comments,
     navigationOptions: {
       header: null,
     },
   },
-  
+  followData: {
+    screen: FollowData,
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
+
 });
 const App = createSwitchNavigator({
-  Login:{
-    screen:Login
-  },
-  SignUp:{
-    screen:SignUp
-  },
+  // Login:{
+  //   screen:Login
+  // },
+  // SignUp:{
+  //   screen:SignUp
+  // },
   App: {
     screen: TabNav,
   },
-  Comments: {
-    screen: stack,
+  // Comment: {
+  //   screen: stack,
+  // },
+  comment: {
+    screen: Comments,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  followData: {
+    screen: FollowData,
+    // navigationOptions: {
+    //   header: null,
+    // },
   },
 });
 
