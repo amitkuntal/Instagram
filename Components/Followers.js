@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View, } from 'react-native';
+import { Text, View,BackHandler } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
 class Followers extends React.Component {
 
     render() {
+        
+        BackHandler.addEventListener('hardwareBackPress',()=>this.props.navigation.navigate('Profile'));
         return (<View style={{ marginTop: "3%", flexDirection: "row", paddingLeft: "2%" }}>
             <Avatar
                 rounded

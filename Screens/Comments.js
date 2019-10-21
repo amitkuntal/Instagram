@@ -1,13 +1,13 @@
 import React from 'react';
-import { Text, View, FlatList, KeyboardAvoidingView } from 'react-native';
+import { Text, View, FlatList, BackHandler, KeyboardAvoidingView } from 'react-native';
 import { Header, Icon, Avatar, Button, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
 class OtherScreen extends React.Component {
-    static navigationOptions = {
-        drawerLockMode: 'locked-closed',
-    }
     render() {
+        const { state } = this.props.navigation;
+        const params = state.params || {};
+        BackHandler.addEventListener('hardwareBackPress', () => this.props.navigation.navigate(params.go_back_key));
         return (
 
             <View>
@@ -22,7 +22,7 @@ class OtherScreen extends React.Component {
                             />
                         }
                         type="clear"
-                        onPress={() => this.props.navigation.navigate('Home')}
+                        onPress={() => this.props.navigation.navigate(params.go_back_key)}
                     />
                     <Text style={{ fontSize: 21, }}>Comments</Text>
                 </Header>

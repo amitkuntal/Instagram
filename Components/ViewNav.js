@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
 class ViewNav extends React.Component {
 
     render() {
+        const {navigate,state} = this.props.navigation;
+        console.log(state.key)
         return (
             <SafeAreaView>
                 <MyHeader title="user_name" navigationProps={this.props.navigation} />
@@ -38,14 +40,14 @@ class ViewNav extends React.Component {
                             <Text>Posts</Text>
                         </View>
                         <View style={styles.counterElem, { textAlign: "center" }}>
-                            <Text onPress={() => (this.props.navigation.navigate('followData'))}
+                            <Text onPress={() => (this.props.navigation.navigate('followData',{ go_back_key: state.key }))}
                                 style={{ fontWeight: "bold", fontSize: 18, }}>180</Text>
-                            <Text onPress={() => (this.props.navigation.navigate('followData'))}>Followers</Text>
+                            <Text onPress={() => (this.props.navigation.navigate('followData',{ go_back_key: state.key }))}>Followers</Text>
                         </View>
                         <View style={styles.counterElem, { textAlign: "center" }}>
-                            <Text onPress={() => (this.props.navigation.navigate('followData'))}
+                            <Text onPress={() => (this.props.navigation.navigate('followData',{ go_back_key: state.key }))}
                                 style={{ fontWeight: "bold", fontSize: 18, }}>230</Text>
-                            <Text onPress={() => (this.props.navigation.navigate('followData'))}>Following</Text>
+                            <Text onPress={() => (this.props.navigation.navigate('followData',{ go_back_key: state.key }))}>Following</Text>
                         </View>
                     </View>
                 </View>
