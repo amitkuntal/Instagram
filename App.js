@@ -60,50 +60,18 @@ const NavOptions = {
 
 const TabNav = createAppContainer(createBottomTabNavigator(TabNavigator, NavOptions))
 
-
-const FirstActivity_StackNavigator = createStackNavigator({
-  Main: {
-    screen: TabNav,
-    navigationOptions: {
-      header: null,
-    },
-  },
-});
-
-const Second_StackNavigator = createStackNavigator({
-  Main: {
-    screen: SignUp,
-    navigationOptions: {
-      drawerLockMode: 'locked-closed',
-      header: null,
-    }
-  },
-});
-
-const Third_StackNavigator = createStackNavigator({
-  Main: {
-    screen: Login,
-    navigationOptions: {
-      header: null,
-      drawerLockMode: 'locked-closed',
-    }
-  },
-});
-
-
 const DrawerNavigatorExample = createDrawerNavigator(
   {
     Screen1: {
-      screen: FirstActivity_StackNavigator,
+      screen: TabNav,
       navigationOptions: {
-        // drawerIcon: () => (<Icon name='ios-apps' type='ionicon' size={25} />),
-        drawerLabel: 'App',
-        drawerLabel: () => null,
+      drawerLabel: 'App',
+      drawerLabel: () => null,
       },
     },
 
     Screen2: {
-      screen: Second_StackNavigator,
+      screen: Login,
       navigationOptions: {
         drawerIcon: () => (<Icon name='ios-person-add' type='ionicon' size={25} />),
         drawerLabel: 'Add Account',
@@ -111,7 +79,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
     },
 
     Screen3: {
-      screen: Third_StackNavigator,
+      screen:SignUp,
       navigationOptions: {
         drawerIcon: () => (<Icon name='power' type='feather' size={25} />),
         drawerLabel: 'LogOut',
@@ -134,15 +102,16 @@ const Main = createAppContainer(DrawerNavigatorExample);
 
 const App = createSwitchNavigator(
   {
-    // Login: {
-    //   screen: Login
-    // },
-    // SignUp: {
-    //   screen: SignUp
-    // },
     Main: {
       screen: Main,
     },
+    Login: {
+      screen: Login
+    },
+    SignUp: {
+      screen: SignUp
+    },
+    
     comment: {
       screen: Comments,
       backBehaviour: 'history',
