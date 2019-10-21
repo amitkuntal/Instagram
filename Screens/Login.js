@@ -1,9 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Image, Button, Divider, Input } from 'react-native-elements';
+import { Image, Button, Divider, Input, Icon } from 'react-native-elements';
 
 
-class Profile extends React.Component {
+class Login extends React.Component {
+
+    static navigationOptions = {
+        drawerLockMode: 'locked-closed',
+    }
+
     render() {
         return (
             <View>
@@ -57,4 +62,4 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default Login;

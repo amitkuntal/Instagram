@@ -5,6 +5,11 @@ import User from './../Components/topUser'
 
 
 class Search extends React.Component {
+
+    static navigationOptions = {
+        drawerLockMode: 'locked-closed',
+    }
+
     state = {
         search: '',
         topUsers: [{ name: "name", userName: "User_NAme", profile: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg", },

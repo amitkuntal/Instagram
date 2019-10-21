@@ -12,8 +12,10 @@ class Following extends React.Component {
                     uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
                 }}
             />
-            <Text style={{ marginTop: "2.8%", marginLeft: "2%", fontSize: 20 }}>UserNAme</Text>
-            <Text style={{ marginTop: "2.8%", marginLeft: "2%", fontSize: 16 }}>User's NAme</Text>
+            <View style={{ flexDirection: "column", marginLeft: "2%" }}>
+                <Text style={{ marginTop: "2.8%", marginLeft: "2%", fontSize: 20 }}>UserNAme</Text>
+                <Text style={{ marginTop: "2.8%", marginLeft: "2%", fontSize: 16, color: "grey" }}>user's Name</Text>
+            </View>
         </View>)
     }
 }

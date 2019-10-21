@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
+import MyHeader from '../Components/Header';
 
 class AddPost extends React.Component {
     render() {
         return (
-            <Text style={{
-                textAlign: "center",
-            }}>AddPostPage</Text>
+            <View>
+                <MyHeader title="Instagram" navigationProps={this.props.navigation} />
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>AddPost</Text>
+                </View>
+            </View>
         );
     }
 }

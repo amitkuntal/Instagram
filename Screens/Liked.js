@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, FlatList } from 'react-native';
+import MyHeader from '../Components/Header';
+import Grid from '../Components/Grid';
 
 class Liked extends React.Component {
     render() {
         return (
-            <Text style={{
-                textAlign: "center",
-            }}>LikedPage</Text>
+            <View>
+                <MyHeader title="Liked Posts" navigationProps={this.props.navigation} />
+                <View style={{ marginBottom: "9%" }}>
+                    <Grid navigation={this.props.navigation} />
+                </View>
+            </View>
         );
     }
 }

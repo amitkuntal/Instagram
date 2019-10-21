@@ -18,7 +18,7 @@ class ViewNav extends React.Component {
     render() {
         return (
             <SafeAreaView>
-                <MyHeader title="user_name" />
+                <MyHeader title="user_name" navigationProps={this.props.navigation} />
                 <View style={{
                     flexDirection: "row",
                     justifyContent: "space-around",

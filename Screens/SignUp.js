@@ -4,6 +4,11 @@ import { Avatar, Card, Image, Button, Divider, Input } from 'react-native-elemen
 
 
 class SignUp extends React.Component {
+
+    static navigationOptions = {
+        drawerLockMode: 'locked-closed',
+    }
+
     render() {
         return (
             <View>

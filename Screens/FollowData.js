@@ -3,36 +3,34 @@ import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import Followers from '../Components/Followers';
 import Following from '../Components/Following';
 
+
 const TabNavigator = {
-    Followers: {
-        screen: Followers,
-        defaultNavigationOptions: () => ({
-            tabBarOptions: {
-                activeTintColor: 'black',
-                inactiveTintColor: 'gray',
-                header: null,
-                scrollEnabled: true,
-            }
-        })
-    },
-    Following: {
-        screen: Following,
-        defaultNavigationOptions: () => ({
-            tabBarOptions: {
-                activeTintColor: 'black',
-                inactiveTintColor: 'gray',
-                header: null,
-                scrollEnabled: true,
-            }
-        })
-    },
+    Followers: Followers,
+    Following: Following,
 }
 
+
 const NavBar = createMaterialTopTabNavigator(
+
     TabNavigator,
     {
+        tabBarOptions: {
+            indicatorStyle: {
+                backgroundColor: 'black',
+            },
+            style: {
+                backgroundColor: 'white',
+            },
+            labelStyle: {
+                color: 'black',
+                fontSize: 20,
+            }
+        },
         initialRouteName: 'Followers',
-        backBehaviour: 'initialRoute',
+        backBehaviour: 'history',
+    },
+    {
+        backBehaviour: 'history',
     }
 );
 
