@@ -10,6 +10,9 @@ const TabNavigator = {
     List: List,
 }
 
+
+
+
 const NavBar = createMaterialTopTabNavigator(
     TabNavigator,
     {

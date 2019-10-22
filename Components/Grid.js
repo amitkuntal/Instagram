@@ -62,6 +62,7 @@ class Grid extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <ScrollView>
                 {this.renderImagesInGroupsOf()}

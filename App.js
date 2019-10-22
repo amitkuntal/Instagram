@@ -6,6 +6,19 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks'
+import * as Expo from 'expo';
+
+
+
+
+const client = new ApolloClient({
+  uri: 'https://instagramclonemountblue.herokuapp.com/v1/graphql'
+
+});
+
+
 
 import Home from './Screens/Home';
 import Liked from './Screens/Liked';
@@ -102,16 +115,16 @@ const Main = createAppContainer(DrawerNavigatorExample);
 
 const App = createSwitchNavigator(
   {
-    Main: {
-      screen: Main,
-    },
+   
     Login: {
       screen: Login
     },
     SignUp: {
       screen: SignUp
     },
-    
+    Main: {
+      screen: Main,
+    },
     comment: {
       screen: Comments,
       backBehaviour: 'history',
@@ -128,5 +141,16 @@ const App = createSwitchNavigator(
   }
 );
 
-export default createAppContainer(App);
-
+const AppContainer = createAppContainer(App)
+export default class Root extends React.Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <AppContainer/>
+      </ApolloProvider>
+    )
+  }
+}
+// export default createAppContainer(App);
+// AppRegistry.registerComponent('MyApp', () => Root)
+Expo.registerRootComponent(Root)

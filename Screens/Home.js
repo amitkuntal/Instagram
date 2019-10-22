@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList,AsyncStorage } from 'react-native';
 import MyHeader from '../Components/Header';
 import Post from '../Components/Post';
 
 class Home extends React.Component {
     render() {
+        AsyncStorage.getItem('userId').then((data)=>console.log(data))
+        
         return (
             <View>
                 <MyHeader title="Instagram" navigationProps={this.props.navigation} />
