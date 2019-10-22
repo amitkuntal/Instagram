@@ -31,11 +31,18 @@ import SignUp from './Screens/SignUp';
 import FollowData from './Screens/FollowData';
 import CustomHeader from './Components/CustomHeader';
 // import SettingsNav from './Screens/Settings';
+import Preview from './Screens/Preview';
+
 
 const TabNavigator = {
   Home: Home,
   Search: Search,
-  AddPost: AddPost,
+  AddPost: {
+    screen: AddPost,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  },
   Liked: Liked,
   Profile: Profile,
 };
@@ -78,8 +85,9 @@ const DrawerNavigatorExample = createDrawerNavigator(
     Screen1: {
       screen: TabNav,
       navigationOptions: {
-      drawerLabel: 'App',
-      drawerLabel: () => null,
+        // drawerIcon: () => (<Icon name='ios-apps' type='ionicon' size={25} />),
+        drawerLabel: 'App',
+        drawerLabel: () => null,
       },
     },
 
@@ -92,7 +100,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
     },
 
     Screen3: {
-      screen:SignUp,
+      screen: SignUp,
       navigationOptions: {
         drawerIcon: () => (<Icon name='power' type='feather' size={25} />),
         drawerLabel: 'LogOut',
@@ -115,7 +123,7 @@ const Main = createAppContainer(DrawerNavigatorExample);
 
 const App = createSwitchNavigator(
   {
-   
+
     Login: {
       screen: Login
     },
@@ -133,6 +141,9 @@ const App = createSwitchNavigator(
       screen: FollowData,
       backBehaviour: 'history',
     },
+    preview: {
+      screen: Preview,
+    }
   },
   {
     style: {
@@ -146,7 +157,7 @@ export default class Root extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <AppContainer/>
+        <AppContainer />
       </ApolloProvider>
     )
   }

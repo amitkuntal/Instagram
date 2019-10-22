@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  AsyncStorage,
-  Text,
-  View,
-  TouchableOpacity,
-  Button,
-  SafeAreaView
-} from "react-native";
+import { StyleSheet, AsyncStorage, Text, View, TouchableOpacity, Button, SafeAreaView } from "react-native";
 import { Avatar, Icon, Divider } from "react-native-elements";
 import _ from "lodash";
 import MyHeader from "../Components/Header";
@@ -57,7 +49,7 @@ export default function ViewNav(props) {
   if (loading) {
     console.log("null");
   }
-  
+
   React.useEffect(() => {
     if (data && data.Post) {
       setPosts(data.Post)
@@ -65,26 +57,26 @@ export default function ViewNav(props) {
   }, [data])
 
 
-  
-  React.useEffect(()=>{
+
+  React.useEffect(() => {
 
     AsyncStorage.getItem("userId").then(data => {
-        getUser({ variables: { User_id: data } })
+      getUser({ variables: { User_id: data } })
 
-    
+
     })
 
-  },[])
+  }, [])
 
 
 
 
   const { navigate, state } = props.navigation;
-//   console.log(state.key);
+  //   console.log(state.key);
   return (
-      
+
     <SafeAreaView>
-      <MyHeader title={data?data.User[0].User_Name:""} navigationProps={props.navigation} />
+      <MyHeader title={data ? data.User[0].User_Name : ""} navigationProps={props.navigation} />
 
       <View
         style={{
@@ -103,7 +95,7 @@ export default function ViewNav(props) {
             size="large"
             title="User's Name"
             source={{
-              uri:data?data.User[0].Profile:"https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"
+              uri: data ? data.User[0].Profile : "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"
             }}
           />
         </View>
@@ -116,7 +108,7 @@ export default function ViewNav(props) {
           }}
         >
           <View style={(styles.counterElem, { textAlign: "center" })}>
-            <Text style={{ fontWeight: "bold", fontSize: 18 }}>{data?data.User[0].Post:"0"}</Text>
+            <Text style={{ fontWeight: "bold", fontSize: 18 }}>{data ? data.User[0].Post : "0"}</Text>
             <Text>Posts</Text>
           </View>
           <View style={(styles.counterElem, { textAlign: "center" })}>
@@ -128,7 +120,7 @@ export default function ViewNav(props) {
               }
               style={{ fontWeight: "bold", fontSize: 18 }}
             >
-              {data?data.User[0].Follower:"0"}
+              {data ? data.User[0].Follower : "0"}
             </Text>
             <Text
               onPress={() =>
@@ -149,8 +141,8 @@ export default function ViewNav(props) {
               }
               style={{ fontWeight: "bold", fontSize: 18 }}
             >
-              {data?data.User[0].Following:"0"}
-              
+              {data ? data.User[0].Following : "0"}
+
             </Text>
             <Text
               onPress={() =>
@@ -171,10 +163,10 @@ export default function ViewNav(props) {
           marginLeft: "4%"
         }}
       >
-        {data?data.User[0].Name:"User's Name"}
+        {data ? data.User[0].Name : "User's Name"}
       </Text>
       <Text style={{ marginLeft: "4%" }}>
-      {data?(data.User[0].Bio||""):"Bio"}
+        {data ? (data.User[0].Bio || "") : "Bio"}
       </Text>
       <Divider marginTop={"2%"} />
       <View
@@ -185,7 +177,7 @@ export default function ViewNav(props) {
         }}
       >
         <Icon
-          onPress={() => props.navigation.navigate("Grid",{posts:posts})}
+          onPress={() => props.navigation.navigate("Grid", { posts: posts })}
           // onPress={() => props.navigation.navigate("Grid",{posts:data?data.Post:[{}]})}
           name="apps"
           type="material"
@@ -194,7 +186,7 @@ export default function ViewNav(props) {
 
         <Icon
           onPress={() => {
-            return props.navigation.navigate("List",{posts:posts});
+            return props.navigation.navigate("List", { posts: posts });
             // return props.navigation.navigate("List",{posts:data?data.Post:[]});
           }}
           name="format-list-bulleted"

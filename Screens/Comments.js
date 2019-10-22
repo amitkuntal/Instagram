@@ -17,7 +17,7 @@ class OtherScreen extends React.Component {
                             <Icon
                                 name="arrowleft"
                                 type="antdesign"
-                                size={15}
+                                size={20}
                                 color="black"
                             />
                         }
@@ -26,7 +26,7 @@ class OtherScreen extends React.Component {
                     />
                     <Text style={{ fontSize: 21, }}>Comments</Text>
                 </Header>
-                <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={100} >
+                <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={10} >
                     <ScrollView style={{ width: "100%", height: '82.5%', }}>
                         <FlatList data={[1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}
                             renderItem={({ Item }) =>

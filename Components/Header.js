@@ -8,7 +8,7 @@ class MyHeader extends React.Component {
 
     toggleDrawer = () => {
         //Props to open/close the drawer
-        console.log(this.props)
+        // console.log(this.props)
         this.props.navigationProps.dispatch(DrawerActions.toggleDrawer());
     };
 
@@ -21,7 +21,7 @@ class MyHeader extends React.Component {
 
             }>
                 {/* onPress={() => (console.log(this.props))} />}> */}
-                <Text style={{ fontSize: 28, width: 400 }}>{this.props.title}</Text>
+                <Text style={{ fontSize: 21, width: 400 }}>{this.props.title}</Text>
             </Header>
         );
     };
