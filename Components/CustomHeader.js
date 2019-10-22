@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Header } from 'react-native-elements';
 // import SafeAreaView from 'react-native-safe-area-view';
 import { DrawerNavigatorItems } from 'react-navigation-drawer';
