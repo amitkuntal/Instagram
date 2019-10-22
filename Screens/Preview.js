@@ -201,7 +201,7 @@ export default function Preview(props) {
                 
                 
               }}
-            />
+            />{data?props.navigation.navigate('Profile'):<></>}
           </View>
         </KeyboardAvoidingView>
       </View>
