@@ -6,8 +6,8 @@ class List extends React.Component {
     render() {
         return (
             <FlatList
-                data={[1, 2, 3, 4, 5, 6]}
-                renderItem={(item) => (<Post navigation={this.props.navigation} />)}
+                data={[...this.props.data.Post]}
+                renderItem={(item) => (<Post navigation={this.props.navigation} postData={{ ...item }} />)}
                 style={{
                     marginTop: '2%',
                 }}

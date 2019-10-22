@@ -16,8 +16,8 @@ var IMAGES_PER_ROW = 3;
 // var IMAGE_URLS =[];
 
 class Grid extends React.Component {
-    
-    
+
+
     calculatedSize() {
         var size = windowWidth / IMAGES_PER_ROW
         return { width: size, height: size }
@@ -34,17 +34,16 @@ class Grid extends React.Component {
         return _.chunk(IMAGE_URLS, IMAGES_PER_ROW).map((imagesForRow, i) => {
             return (
                 <View style={styles.row} key={i}>
-                    {IMAGE_URLS?this.renderRow(imagesForRow):""}
+                    {IMAGE_URLS ? this.renderRow(imagesForRow) : ""}
                 </View>
             )
         })
     }
 
     render() {
-        const params = this.props.navigation.getParam('posts')
+        // const params = this.props.navigation.getParam('posts')
         // const IMAGE_URLS = params && params.posts ? params.posts : [];
-        const IMAGE_URLS = params;
-        console.log(this.props.navigation)
+        const IMAGE_URLS = [...this.props.data.Post];
 
         return (
             <ScrollView>
