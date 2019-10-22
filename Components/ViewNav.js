@@ -22,37 +22,48 @@ const styles = StyleSheet.create({
   }
 });
 const GET_USER = gql`
-  query getUser($User_id: String!) {
-        User(where: {User_id: {_eq: $User_id}}) {
-            Profile
-            User_id
-            User_Name
-            PhoneNumber 
-            Name
-            Email
-            Post
-            Follower
-            Following
-        }
-        Post(where: {User_id: {_eq: $User_id}}) {
-          Post_id
-          Image
-          Caption
-          User_id
-        }
-      }
+query getUser($User_id: String!) {
+  User(where: {User_id: {_eq: $User_id}}) {
+      Profile
+      User_id
+      User_Name
+      PhoneNumber 
+      Name
+      Email
+      Post
+      Follower
+      Following
+  }
+  Post(where: {User_id: {_eq: $User_id}}) {
+    Post_id
+    Image
+    Caption
+    User_id
+     User{
+      Name
+      User_id
+      Profile
+    }
+  }
+}
+
       
   
 `;
 
-export default function ViewNav({ ...props }) {
+export default function ViewNav(props) {
   const [getUser, { loading, data }] = useLazyQuery(GET_USER);
+  const [posts, setPosts] = React.useState([]);
   if (loading) {
     console.log("null");
   }
-  if (data) {
-    console.log(data.User[0].Name);
-  }
+  
+  React.useEffect(() => {
+    if (data && data.Post) {
+      setPosts(data.Post)
+    }
+  }, [data])
+
 
   
   React.useEffect(()=>{
@@ -111,7 +122,7 @@ export default function ViewNav({ ...props }) {
           <View style={(styles.counterElem, { textAlign: "center" })}>
             <Text
               onPress={() =>
-                this.props.navigation.navigate("followData", {
+                props.navigation.navigate("followData", {
                   go_back_key: state.key
                 })
               }
@@ -132,7 +143,7 @@ export default function ViewNav({ ...props }) {
           <View style={(styles.counterElem, { textAlign: "center" })}>
             <Text
               onPress={() =>
-                this.props.navigation.navigate("followData", {
+                props.navigation.navigate("followData", {
                   go_back_key: state.key
                 })
               }
@@ -174,7 +185,8 @@ export default function ViewNav({ ...props }) {
         }}
       >
         <Icon
-          onPress={() => props.navigation.navigate("Grid",{posts:data?data.Post:[]})}
+          onPress={() => props.navigation.navigate("Grid",{posts:posts})}
+          // onPress={() => props.navigation.navigate("Grid",{posts:data?data.Post:[{}]})}
           name="apps"
           type="material"
           size={30}
@@ -182,7 +194,8 @@ export default function ViewNav({ ...props }) {
 
         <Icon
           onPress={() => {
-            return props.navigation.navigate("List",{posts:data?data.Post:[]});
+            return props.navigation.navigate("List",{posts:posts});
+            // return props.navigation.navigate("List",{posts:data?data.Post:[]});
           }}
           name="format-list-bulleted"
           type="material-community"

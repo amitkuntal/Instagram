@@ -13,59 +13,42 @@ const styles = StyleSheet.create({
 
 const windowWidth = Dimensions.get('window').width;
 var IMAGES_PER_ROW = 3;
-var IMAGE_URLS = [
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-    'https://picsum.photos/536/354',
-]
+// var IMAGE_URLS =[];
 
 class Grid extends React.Component {
-
+    
+    
     calculatedSize() {
         var size = windowWidth / IMAGES_PER_ROW
         return { width: size, height: size }
     }
 
     renderRow(images) {
-        return images.map((uri, i) => {
+        return images.map((image, i) => {
             return (
-                <Image key={i} style={[styles.item, this.calculatedSize()]} source={{ uri: uri }} />
+                <Image key={i} style={[styles.item, this.calculatedSize()]} source={{ uri: image.Image }} />
             );
         })
     }
-    renderImagesInGroupsOf() {
+    renderImagesInGroupsOf(IMAGE_URLS) {
         return _.chunk(IMAGE_URLS, IMAGES_PER_ROW).map((imagesForRow, i) => {
             return (
                 <View style={styles.row} key={i}>
-                    {this.renderRow(imagesForRow)}
+                    {IMAGE_URLS?this.renderRow(imagesForRow):""}
                 </View>
             )
         })
     }
 
     render() {
-        console.log(this.props)
+        const params = this.props.navigation.getParam('posts')
+        // const IMAGE_URLS = params && params.posts ? params.posts : [];
+        const IMAGE_URLS = params;
+        console.log(this.props.navigation)
+
         return (
             <ScrollView>
-                {this.renderImagesInGroupsOf()}
+                {this.renderImagesInGroupsOf(IMAGE_URLS)}
             </ScrollView>
         );
     }
