@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View ,AsyncStorage} from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import { Image, Button, Divider, Input, Icon } from 'react-native-elements';
 import * as Facebook from 'expo-facebook';
 import * as firebase from 'firebase'
@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 const INSERT_USER = gql`mutation insert_User($objects: [User_insert_input!]! ) {
-    insert_User(objects: $objects) {
+    insert_User(objects: $objects, on_conflict: {constraint: User_pkey, update_columns: User_id} ) {
       returning {
         Name
         Email
@@ -20,39 +20,41 @@ const INSERT_USER = gql`mutation insert_User($objects: [User_insert_input!]! ) {
   }`
 
 
-  
+
 
 export default function Login({ ...props }) {
-    
+
     // static navigationOptions = {
     //     drawerLockMode: 'locked-closed',
     // }
-    const [insertUser, { loading,error, data }] = useMutation(INSERT_USER)
-    if(loading){
+    const [insertUser, { loading, error, data }] = useMutation(INSERT_USER)
+    if (loading) {
         console.log(null);
-        
+
     }
-    if(error){
+    if (error) {
         // console.log(error);
-       
+
         // props.navigation.setParams({User:error})
         // props.navigation.navigate('Profile',{id:"6"})   
-        AsyncStorage.setItem('userId','OphFULv8SEM5MJqoyAKeqSJV2eg1').then(()=>{
+        AsyncStorage.setItem('userId', 'OphFULv8SEM5MJqoyAKeqSJV2eg1').then(() => {
             console.log("is")
-            return props.navigation.navigate("Main")})
-       .catch((err)=>console.log(err))
-          
- }
+            return props.navigation.navigate("Main")
+        })
+            .catch((err) => console.log(err))
 
-    if(data){
-        
-            AsyncStorage.setItem('userId',data.insert_User.returning[0].User_id).then(()=>{
+    }
+
+    if (data) {
+
+        AsyncStorage.setItem('userId', data.insert_User.returning[0].User_id).then(() => {
             console.log("is")
-            return props.navigation.navigate("Main")})
-       .catch((err)=>console.log(err))
-        
+            return props.navigation.navigate("Main")
+        })
+            .catch((err) => console.log(err))
 
-        
+
+
     }
 
     async function loginWithFacebook() {
@@ -67,31 +69,31 @@ export default function Login({ ...props }) {
             }
             firebase.auth().onAuthStateChanged((user) => {
                 if (user != null) {
-                 //    console.log(user)
+                    //    console.log(user)
                     var firstWord = user.displayName.replace(/ .*/, '');
                     var user_name = `${firstWord}` + Math.floor(1000 + Math.random() * 9000);
-                 //    console.log("This is at label  1")
-                 insertUser(
-                     {
-                         variables: {
-                             objects: [
-                                 {
-                                     "Name": user.displayName,
-                                     "Email": user.email,
-                                     "User_id": user.uid,
-                                     "Profile": user.photoURL,
-                                     "User_Name": user_name,
-                                     "PhoneNumber":user.phoneNumber
-                                 }
-                             ]
-                         }
-                     }
-                 );
-               
-     
-     
-     
-                 }
+                    //    console.log("This is at label  1")
+                    insertUser(
+                        {
+                            variables: {
+                                objects: [
+                                    {
+                                        "Name": user.displayName,
+                                        "Email": user.email,
+                                        "User_id": user.uid,
+                                        "Profile": user.photoURL,
+                                        "User_Name": user_name,
+                                        "PhoneNumber": user.phoneNumber
+                                    }
+                                ]
+                            }
+                        }
+                    );
+
+
+
+
+                }
             })
 
         } catch (error) {
@@ -112,7 +114,7 @@ export default function Login({ ...props }) {
                     />
                     <View style={{ marginTop: "7%" }}>
                         <Button
-                         onPress={loginWithFacebook}
+                            onPress={loginWithFacebook}
 
                             title="Login With Facebook" />
                     </View>

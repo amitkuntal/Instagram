@@ -27,8 +27,8 @@ var parentId = [];
 
 export default function Liked({ ...props }) {
   const [getParentId, { data }] = useLazyQuery(GET_POST);
-//   console.log("loading", loading);
-//   console.log("data", data);
+  //   console.log("loading", loading);
+  //   console.log("data", data);
 
   const [getLike, { data: mydata }] = useLazyQuery(
     GET_LIKED
@@ -42,8 +42,8 @@ export default function Liked({ ...props }) {
     console.log(mydata);
 
     if (mydata) {
-        parentId = mydata.Like.map(parent => parent.Parent_id);
-        getParentId({ variables: { Post_id: parentId } });
+      parentId = mydata.Like.map(parent => parent.Parent_id);
+      getParentId({ variables: { Post_id: parentId } });
     }
   }, [mydata]);
 
@@ -52,13 +52,16 @@ export default function Liked({ ...props }) {
       return getLike({ variables: { User_id: data } });
     })
   }, []);
-
-  return (
-    <View>
-      <MyHeader title="Liked Posts" navigationProps={props.navigation} />
-      <View style={{ marginBottom: "9%" }}>
-        <Grid navigation={props.navigation} />
+  if (data) {
+    return (
+      <View>
+        <MyHeader title="Liked Posts" navigationProps={props.navigation} />
+        <View style={{ marginBottom: "9%" }}>
+          <Grid navigation={props.navigation} data={data} />
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
+  return (<></>)
+
 }
